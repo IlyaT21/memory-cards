@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Gameboard.scss";
 
-function Gameboard({ pokemonData, fetchPokemon }) {
+function Gameboard({ pokemonData, fetchPokemon, currentScore, updateScore }) {
   const [selectedPokemonNames, setSelectedPokemonNames] = useState([]);
   const [shuffledData, setShuffledData] = useState([]);
   const [popupMessage, setPopupMessage] = useState("");
@@ -22,6 +22,7 @@ function Gameboard({ pokemonData, fetchPokemon }) {
     } else {
       setSelectedPokemonNames([...selectedPokemonNames, pokemon.name]);
       setShuffledData(shuffleArray([...shuffledData]));
+      updateScore(currentScore + 1);
     }
   };
 
