@@ -1,13 +1,21 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import Fetch from "./components/fetch/Fetch.jsx";
+import Fetch from "./components/fetch/Fetch";
+import Gameboard from "./components/gameboard/Gameboard";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [pokemonData, setPokemonData] = useState([]);
+  const [triggerFetch, setTriggerFetch] = useState(false);
+
+  const fetchPokemon = () => {
+    setPokemonData([]);
+    setTriggerFetch((prev) => !prev);
+  };
 
   return (
     <>
-      <Fetch />
+      <Fetch setPokemonData={setPokemonData} triggerFetch={triggerFetch} />
+      <Gameboard pokemonData={pokemonData} fetchPokemon={fetchPokemon} />
     </>
   );
 }
